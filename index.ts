@@ -6,17 +6,17 @@ import { mergeTypeDefs } from "@graphql-tools/merge";
 import { makeExecutableSchema } from "@graphql-tools/schema";
 import path, { dirname } from "path";
 import { fileURLToPath } from 'url';
-import { mutationResolver, queryResolver } from "./resolvers";
-import { authDirectiveTransformer } from "./utils/protectedDirective";
-import { contextExecutor } from "./utils/contextExecuter";
-import dateScalar from "./utils/dateScalar";
-import { Resolvers, UserResponse } from "./__generated__/graph-types";
+import { mutationResolver, queryResolver } from "./src/resolvers";
+import { authDirectiveTransformer } from "./src/utils/protectedDirective";
+import { contextExecutor } from "./src/utils/contextExecuter";
+import dateScalar from "./src/utils/dateScalar";
+import { Resolvers, UserResponse } from "./src/__generated__/graph-types";
 
 const PORT = Number(process.env.PORT) || 4000;
 
 // Create schema by combining definitions from all graphQL files.
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const loadedSchema = loadFilesSync(path.join(__dirname, "./graph_schema"), {
+const loadedSchema = loadFilesSync(path.join(__dirname, "./src/graph_schema"), {
   extensions: [".graphql"],
   recursive: true,
 });

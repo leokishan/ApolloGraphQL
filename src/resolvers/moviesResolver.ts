@@ -1,4 +1,4 @@
-import { ApplicationContext } from "..";
+import { ApplicationContext } from "../..";
 import prisma from "../config/prismaClient";
 import { throwError } from "../utils/throwError";
 import {
