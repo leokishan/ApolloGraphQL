@@ -1,0 +1,43 @@
+type User {
+  username: String!
+  email: String!
+}
+
+input UserSignup {
+  username: String!
+  email: String!
+  password: String!
+}
+
+input LoginCredentials {
+  email: String!
+  password: String!
+}
+
+input ChangePasswordRequest {
+  email: String!
+  password: String!
+  newPassword: String!
+}
+
+type LoginResponse {
+  id: Int!
+  username: String!
+  email: String!
+  token: String!
+}
+
+type UserResponse {
+    id: Int!
+    username: String!
+    email: String!
+}
+
+type Query {
+  login(credentials: LoginCredentials!): LoginResponse
+}
+
+type Mutation {
+  signup(user: UserSignup!): User
+  changePassword(credentials: ChangePasswordRequest!): User
+}

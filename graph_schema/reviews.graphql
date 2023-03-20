@@ -1,0 +1,55 @@
+type ReviewResponse {
+  id: Int!
+  movie: MovieResponse
+  user: UserResponse
+  rating: Int!
+  comment: String!
+}
+
+enum SortingReviewFields {
+  id
+  rating
+}
+
+type PaginatedReviewList {
+  reviews: [ReviewResponse]!
+  meta: PaginationResponse!
+}
+
+input CreateReviewRequest {
+  movieId: Int!
+  userId: Int!
+  rating: Int!
+  comment: String!
+}
+
+input UpdateReviewRequest {
+  rating: Int
+  comment: String
+}
+
+input ReviewFilters {
+  rating: Int
+  comment: String
+}
+
+input ReviewSortFields {
+  field: SortingReviewFields!
+  isAscending: Boolean!
+}
+
+type Query {
+  listReviews(
+    filter: ReviewFilters
+    sort: ReviewSortFields
+    pagination: PaginationFields
+    movieId: Int!
+  ): PaginatedReviewList
+}
+
+type Mutation {
+  createReview(review: CreateReviewRequest): ReviewResponse @protected
+  updateReview(id: Int!, review: UpdateReviewRequest!): ReviewResponse
+    @protected
+  deleteReview(id: Int!): ReviewResponse @protected
+}

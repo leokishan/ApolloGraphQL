@@ -1,0 +1,13 @@
+scalar Date
+
+directive @protected on FIELD_DEFINITION
+
+input PaginationFields {
+  pageSize: Int
+  pageNumber: Int
+}
+
+type PaginationResponse {
+  totalPages: Int!
+  pageSize: Int!
+}

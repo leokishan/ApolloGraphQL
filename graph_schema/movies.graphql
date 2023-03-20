@@ -1,0 +1,68 @@
+type Movie {
+  movieName: String!
+  description: String!
+  directorName: String!
+  releaseDate: Date!
+}
+
+enum SortingMovieFields {
+  id
+  movieName
+  directorName
+  releaseDate
+}
+
+type MovieResponse {
+  id: Int!
+  movieName: String!
+  description: String!
+  directorName: String!
+  releaseDate: Date!
+  user: UserResponse
+}
+
+type PaginatedMovieList {
+  movies: [MovieResponse]!
+  meta: PaginationResponse!
+}
+
+input UpdateMovieRequest {
+  movieName: String
+  description: String
+  directorName: String
+  releaseDate: Date
+}
+
+input CreateMovieRequest {
+  movieName: String!
+  description: String!
+  directorName: String!
+  releaseDate: Date!
+}
+
+input MovieFilters {
+  searchTerm: String
+  movieName: String
+  description: String
+  directorName: String
+}
+
+input MovieSortFields {
+  field: SortingMovieFields!
+  isAscending: Boolean!
+}
+
+type Query {
+  listMovies(
+    filter: MovieFilters
+    sort: MovieSortFields
+    pagination: PaginationFields
+  ): PaginatedMovieList
+  getMovie(id: Int!): MovieResponse
+}
+
+type Mutation {
+  createMovie(movie: CreateMovieRequest!): MovieResponse @protected
+  updateMovie(id: Int!, movie: UpdateMovieRequest!): MovieResponse @protected
+  deleteMovie(id: Int!): MovieResponse
+}
