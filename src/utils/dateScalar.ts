@@ -1,5 +1,7 @@
 import { GraphQLScalarType, Kind } from 'graphql';
 import { format, parse } from "date-fns";
+import { validateFieldValue } from './validateFields';
+import { throwError } from './throwError';
 
 const dateScalar = new GraphQLScalarType({
   name: 'Date',
@@ -12,9 +14,12 @@ const dateScalar = new GraphQLScalarType({
   },
   parseValue(value) {
     if (typeof value === 'string') {
-      return parse(value, 'MM/dd/yyyy', new Date());
+      validateFieldValue(value, "date")
+      const date = parse(value, 'MM/dd/yyyy', new Date());
+      if(isNaN(date.getTime())) throwError("Please enter valid date", 400)
+      return date;
     }
-    throw new Error('GraphQL Date Scalar parser expected a `number`');
+    throw new Error('GraphQL Date Scalar parser expected a `string`');
   },
   parseLiteral(ast) {
     if (ast.kind === Kind.INT) {

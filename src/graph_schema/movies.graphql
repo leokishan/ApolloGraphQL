@@ -64,5 +64,5 @@ type Query {
 type Mutation {
   createMovie(movie: CreateMovieRequest!): MovieResponse @protected
   updateMovie(id: Int!, movie: UpdateMovieRequest!): MovieResponse @protected
-  deleteMovie(id: Int!): MovieResponse
+  deleteMovie(id: Int!): MovieResponse @protected
 }

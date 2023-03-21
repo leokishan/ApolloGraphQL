@@ -162,6 +162,7 @@ const updateReview: Resolver<ReviewResponse> = async (
     .update({
       where: { id },
       data: review,
+      include: { movie: true, user: true },
     })
     .catch((err) => {
       console.error(err);
@@ -187,11 +188,19 @@ const deleteReview: Resolver<ReviewResponse> = async (
   if (existingReview && existingReview.userId !== context.user.id)
     throwError("Cannot delete review which is not created by you.", 401);
 
-  return prisma.review.delete({ where: { id } }).catch((err) => {
-    console.error(err);
-    throwError("Something went wrong, please try again later.", 500);
-    return null;
-  });
+  return prisma.review
+    .delete({
+      where: { id },
+      include: {
+        movie: true,
+        user: true,
+      },
+    })
+    .catch((err) => {
+      console.error(err);
+      throwError("Something went wrong, please try again later.", 500);
+      return null;
+    });
 };
 
 export const ReviewResolver = {

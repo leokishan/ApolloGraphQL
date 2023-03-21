@@ -33,7 +33,6 @@ export type CreateReviewRequest = {
   comment: Scalars['String'];
   movieId: Scalars['Int'];
   rating: Scalars['Int'];
-  userId: Scalars['Int'];
 };
 
 export type LoginCredentials = {
@@ -103,7 +102,7 @@ export type MutationCreateMovieArgs = {
 
 
 export type MutationCreateReviewArgs = {
-  review?: InputMaybe<CreateReviewRequest>;
+  review: CreateReviewRequest;
 };
 
 
@@ -421,7 +420,7 @@ export type MovieResponseResolvers<ContextType = ApplicationContext, ParentType 
 export type MutationResolvers<ContextType = ApplicationContext, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = ResolversObject<{
   changePassword?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<MutationChangePasswordArgs, 'credentials'>>;
   createMovie?: Resolver<Maybe<ResolversTypes['MovieResponse']>, ParentType, ContextType, RequireFields<MutationCreateMovieArgs, 'movie'>>;
-  createReview?: Resolver<Maybe<ResolversTypes['ReviewResponse']>, ParentType, ContextType, Partial<MutationCreateReviewArgs>>;
+  createReview?: Resolver<Maybe<ResolversTypes['ReviewResponse']>, ParentType, ContextType, RequireFields<MutationCreateReviewArgs, 'review'>>;
   deleteMovie?: Resolver<Maybe<ResolversTypes['MovieResponse']>, ParentType, ContextType, RequireFields<MutationDeleteMovieArgs, 'id'>>;
   deleteReview?: Resolver<Maybe<ResolversTypes['ReviewResponse']>, ParentType, ContextType, RequireFields<MutationDeleteReviewArgs, 'id'>>;
   signup?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<MutationSignupArgs, 'user'>>;

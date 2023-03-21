@@ -18,7 +18,6 @@ type PaginatedReviewList {
 
 input CreateReviewRequest {
   movieId: Int!
-  userId: Int!
   rating: Int!
   comment: String!
 }
@@ -48,7 +47,7 @@ type Query {
 }
 
 type Mutation {
-  createReview(review: CreateReviewRequest): ReviewResponse @protected
+  createReview(review: CreateReviewRequest!): ReviewResponse @protected
   updateReview(id: Int!, review: UpdateReviewRequest!): ReviewResponse
     @protected
   deleteReview(id: Int!): ReviewResponse @protected
