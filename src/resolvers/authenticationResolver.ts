@@ -94,7 +94,7 @@ const changePassword: Resolver<User> = async (
 ) => {
   // Validate field value format
   validateFieldValue(credentials.email, "email")
-  validateFieldValue(credentials.newPassword, "password")
+  validateFieldValue(credentials.newPassword, "password", "New password")
   validateFieldValue(credentials.password, "password")
 
   // throw error if user with email id does not exist
