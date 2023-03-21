@@ -19,6 +19,8 @@
     "@graphql-tools/schema": "^9.0.17",
     "@graphql-tools/utils": "^9.2.1",
     "@prisma/client": "^4.11.0",
+    "@types/bcrypt": "^5.0.0",
+    "@types/jsonwebtoken": "^9.0.1",
     "bcrypt": "^5.1.0",
     "date-fns": "^2.29.3",
     "graphql": "^16.6.0",
