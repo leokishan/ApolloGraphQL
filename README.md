@@ -1,4 +1,4 @@
-# Viral Nation backend task assessment
+# Backend task assessment
 
 This assessment consists of an application created with Apollo server and GraphQL with operations:
 - SignUp as a User
@@ -25,11 +25,6 @@ And additional functionalities:
 - While querying a review logged in user review should always stay on top.
 
 ---
-## Note
-
-By default all filtering and searching happens with "contains" operation so intentionally release date is excluded from filtering movies. Various operations can be implemented like equals, not equal, etc. but because of time restrictions those extra operations are skipped for now.
-
----
 
 ## Extra tools used in project
 1. **Prisma**: Prisma is used to create models for tables in our application and to perform various database operations with its ORM.
@@ -40,12 +35,3 @@ By default all filtering and searching happens with "contains" operation so inte
 1. **jsonwebtokens**: This library is used to create and verify JWT tokens in application's authentication workflow.
 1. **date-fns**: Date fns is used for parsing and formating date objects in application.
 1. **Docker**: Docker was used to generate and test `Dockerfile` for this application.
-
----
-
-## Testing
-I tried to setup jest testcases for the project but I was running into problem while mocking Prisma client with jest and ES6 type imports. I have tried other approaches like using context to provide prisma client like dependency injection but that also didn't work.
-
-I could have used require imports in the project from the start to avoid this problem, but I was not aware of it and at the end I didn't had enough time to refactor whole application with require imports.
-
-I have pushed my intermediate code to `feature/integrationTests` branch for the record. ([Github link to branch](https://github.com/leokishan/ViralNationAssessment/tree/feature/integrationTests))
